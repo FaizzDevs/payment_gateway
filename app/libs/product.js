@@ -2,7 +2,7 @@ export const products = {
     id: ~~(Math.random() * 100) + 1,
     image: "/baju.jpg",
     name: "Product Baju",
-    price: 257000,
+    price: 256000,
     desc: "Baju yang sangat nyaman dan berkualitas tinggi",
     rating: 4.5,
     stock: 10,

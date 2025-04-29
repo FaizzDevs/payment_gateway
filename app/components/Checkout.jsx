@@ -7,6 +7,9 @@ import Link from "next/link";
 const Checkout = () => {
     const [quantity, setQuantity] = useState(1);
     const [paymentLink, setPaymentLink] = useState("");
+    const [grossAmount, setGrossAmount] = useState(products.price * quantity);
+
+    
 
     const decreaseQuantity = () => {
         setQuantity((prevState) => (quantity > 1 ? prevState - 1 : null));
@@ -31,6 +34,7 @@ const Checkout = () => {
 
         const requestData = await response.json();
         window.snap.pay(requestData.token);
+        console.log(requestData);
     };
 
     const generatePayment = async () => {
@@ -54,6 +58,10 @@ const Checkout = () => {
             }
         }
 
+        useEffect(() => {
+            setGrossAmount(products.price * quantity);
+        }, [quantity]);
+
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_API}/v1/payment-links`, {
             method: "POST",
@@ -68,6 +76,8 @@ const Checkout = () => {
         const paymentLink = await response.json();
         setPaymentLink(paymentLink.payment_url);
     }
+
+    
 
     
 
@@ -105,6 +115,9 @@ const Checkout = () => {
                     <Link href={paymentLink} target="_blank">Klik disini</Link>
             </button>
 
+            <p className="mt-4 text-lg font-semibold">
+    <strong>Gross Amount:</strong> Rp {grossAmount.toLocaleString()}
+</p>
 
         </>
     );

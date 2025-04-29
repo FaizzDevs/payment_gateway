@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { products } from "./libs/product";
 import Checkout from "./components/Checkout";
+// import Total from "./components/Total";
+// import Total from "./components/Total"
 import { Toaster } from "sonner";
 import { useEffect } from "react";
-// import TotalSaldo from "./api/total-saldo";
 
 export default function Home() {
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function Home() {
             <p className="mt-1.5 text-sm text-gray-700">Rp. {products.price}</p>
             <p className="text-sm text-gray-700 text-justify">{products.desc}</p>
             <Checkout />
+            {/* <Total /> */}
             {/* <TotalSaldo /> */}
             <Toaster richColors position="bottom-right" />
           </div>
